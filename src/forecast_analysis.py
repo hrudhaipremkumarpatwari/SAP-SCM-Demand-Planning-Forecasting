@@ -2,7 +2,7 @@
 
 The dataset is simulated for educational purposes. The script compares:
 1. Recursive 3-month moving average
-2. Simple exponential smoothing (alpha=0.30)
+2. Simple exponential smoothing (alpha=0.30, estimated initial level)
 3. Multiplicative seasonal Holt-Winters (12-month seasonality, no trend)
 
 Training period: Jan 2023-Dec 2024
@@ -12,7 +12,7 @@ Holdout period: Jan 2025-Jun 2025
 from pathlib import Path
 import numpy as np
 import pandas as pd
-from statsmodels.tsa.holtwinters import ExponentialSmoothing
+from statsmodels.tsa.holtwinters import ExponentialSmoothing, SimpleExpSmoothing
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA_FILE = ROOT / "data" / "demand_history.csv"
@@ -29,10 +29,11 @@ def recursive_moving_average(train, horizon=6, window=3):
 
 
 def simple_exponential_smoothing(train, horizon=6, alpha=0.30):
-    level = float(train[0])
-    for actual in train[1:]:
-        level = alpha * float(actual) + (1 - alpha) * level
-    return np.repeat(level, horizon)
+    model = SimpleExpSmoothing(
+        train,
+        initialization_method="estimated",
+    ).fit(smoothing_level=alpha, optimized=False)
+    return np.asarray(model.forecast(horizon), dtype=float)
 
 
 def seasonal_holt_winters(train, horizon=6):
@@ -76,8 +77,7 @@ def main():
 
     for name, forecast in forecasts.items():
         comparison[name] = np.round(forecast, 2)
-        row = {"model": name, **metrics(actual, forecast)}
-        metric_rows.append(row)
+        metric_rows.append({"model": name, **metrics(actual, forecast)})
 
     metric_df = pd.DataFrame(metric_rows)
 
