@@ -1,0 +1,31 @@
+month,demand_units,scenario_note
+2023-01,381,Off-season
+2023-02,440,Off-season
+2023-03,649,Peak summer
+2023-04,904,Peak summer
+2023-05,1006,Peak summer
+2023-06,887,Peak summer
+2023-07,604,Post-peak/monsoon
+2023-08,491,Post-peak/monsoon
+2023-09,430,Post-peak/monsoon
+2023-10,466,Off-season
+2023-11,399,Off-season
+2023-12,358,Off-season
+2024-01,461,Off-season
+2024-02,503,Off-season
+2024-03,727,Peak summer
+2024-04,1026,Peak summer
+2024-05,1193,Peak summer
+2024-06,1103,Peak summer
+2024-07,676,Post-peak/monsoon
+2024-08,555,Post-peak/monsoon
+2024-09,560,Post-peak/monsoon
+2024-10,554,Off-season
+2024-11,496,Off-season
+2024-12,422,Off-season
+2025-01,502,Off-season
+2025-02,606,Off-season
+2025-03,832,Peak summer
+2025-04,1188,Peak summer
+2025-05,1356,Peak summer
+2025-06,1210,Peak summer
