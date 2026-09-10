@@ -1,0 +1,12 @@
+month,actual,moving_average_3m,simple_exponential_smoothing,seasonal_holt_winters
+2025-01,502,491,552,522
+2025-02,606,470,552,574
+2025-03,832,461,552,831
+2025-04,1188,474,552,1162
+2025-05,1356,468,552,1322
+2025-06,1210,467,552,1194
+
+model,MAE,RMSE,MAPE_percent,bias
+3-Month Moving Average,477.32,578.33,42.73,-477.32
+Simple Exponential Smoothing,413.49,510.96,36.61,-396.74
+Seasonal Holt-Winters,21.71,24.43,2.59,-14.95
